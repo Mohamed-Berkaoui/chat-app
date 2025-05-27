@@ -13,8 +13,10 @@ import { userStore } from "./context/UserContext";
 
 function App() {
   const {theme}=useContext(themeStore)
-  const {user}=useContext(userStore)
-
+  const {user,connectToSocket}=useContext(userStore)
+useEffect(function(){
+  if(user?.userInfos?._id)connectToSocket()
+},[user?.userInfos?._id])
   return (
     <div data-theme={theme}>
       <ToastContainer/>

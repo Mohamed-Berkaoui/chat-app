@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url';
 import generatetoken from "../middelwares/generatetoken.js";
 import Codemodel from "../models/code.js";
 import sendVerificationEmail from "../config/sendmailer.js";
+import { connectedUsers } from "../config/socket.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.join(__dirname, '../a.env') });
@@ -75,7 +76,7 @@ const login = asyncHandler(async (req, res) => {
 
 const token=await generatetoken(user._id)
 delete user.password
-  res.status(200).json(new AppSuccess({token:token,user:user}));
+  res.status(200).json(new AppSuccess({token:token,user:user,connectedUsers:Object.keys(connectedUsers)}));
 });
 
 // const activateAccount = asyncHandler(async (req, res) => {

@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react'
 
 export const themeStore=createContext()
 function ThemeContext({children}) {
-    const [theme,setTheme]=useState('light')
+    const [theme,setTheme]=useState(localStorage.getItem("theme")||'light')
     const themes = [
   "light",
   "dark",

@@ -6,6 +6,7 @@ import button from "daisyui/components/button";
 
 function Navbar() {
   const { themes, setTheme } = useContext(themeStore);
+
   const {user}=useContext(userStore)
   return (
     <div className="navbar bg-base-300 shadow-sm z-50 sticky top-0" >
@@ -21,7 +22,9 @@ function Navbar() {
               <summary>theme</summary>
               <ul className="p-2">
                 {themes.map((theme) => (
-                  <li onClick={()=>setTheme(theme)} className="cursor-pointer px-4 py-1 hover:bg-secondary"> {theme}</li>
+                  <li onClick={()=>{setTheme(theme)
+                    localStorage.setItem("theme",theme)
+                  }} className="cursor-pointer px-4 py-1 hover:bg-secondary"> {theme}</li>
                 ))}
               </ul>
             </details>
